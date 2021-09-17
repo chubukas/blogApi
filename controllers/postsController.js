@@ -62,3 +62,27 @@ exports.getAllposts = catchAsync(async (req, res, next) => {
   // SEND RESPONSE
   appSuccess(200, "successful", res, data);
 });
+
+// DELETE SINGLE POST
+exports.deletePost = catchAsync(async (req, res, next) => {
+  const post = await Post.findOneAndDelete({
+    _id: req.params.Id,
+  });
+
+  //   CHECK IF THE POST IS AVAILABLE
+  if (!post)
+    return next(
+      new AppError(
+        "Either this post have been deleted OR You are not the owner of this post!",
+        400
+      )
+    );
+
+  for (const ids of post.postPictures) {
+    await cloudinary.deleteFromCloud(ids?.fileId);
+  }
+  // DELETE ALL COMMENTS UNDER THE POST
+  await Comment.deleteMany({ post: post._id });
+
+  appSuccess(200, "This post is deleted successfully", res);
+});
