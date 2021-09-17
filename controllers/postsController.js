@@ -5,6 +5,7 @@ const validateInputs = require("../utils/validateInputs");
 const appSuccess = require("../utils/appSuccess");
 const filesUpload = require("../utils/filesUpload");
 const cloudinary = require("../utils/cloudinary");
+const Comment = require("../models/Comments");
 
 // CREATE POST
 exports.createPost = catchAsync(async (req, res, next) => {
@@ -31,4 +32,23 @@ exports.createPost = catchAsync(async (req, res, next) => {
   }
 
   appSuccess(200, "Posts created successfully", res, data);
+});
+
+// GET ALL POSTS WITH COMMENTS
+exports.getAllposts = catchAsync(async (req, res, next) => {
+  // GET ALL THE POST IN THE DATABASE
+  let posts = await Post.find().populate({
+    path: "comments",
+    select: { post: 0, createdAt: 0 },
+  });
+
+  const totalAllComments = posts
+    .map(({ comments }) => comments.length)
+    .reduce((a, b) => a + b, 0);
+  const totalAllPosts = posts.length;
+
+  const data = { totalAllPosts, totalAllComments, posts };
+
+  // SEND RESPONSE
+  appSuccess(200, "successful", res, data);
 });
