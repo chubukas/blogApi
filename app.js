@@ -65,6 +65,11 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get("/api/v1/", (req, res, next) => {
+  res.send("Welcome to the first version of ChukwuEbuka Blog Platform API");
+  next();
+});
+
 // routes
 app.use("/api/v1/posts", postRoutes);
 app.use("/api/v1/comments", commentsRoutes);
