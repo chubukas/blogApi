@@ -10,6 +10,7 @@ const path = require("path");
 const fileUpload = require("express-fileupload");
 
 // Import Routes
+const postRoutes = require("./routers/postRoutes");
 
 const globalErrorHandler = require("./middlewares/globalErrorHandler");
 
@@ -64,6 +65,7 @@ app.use((req, res, next) => {
 });
 
 // routes
+app.use("/api/v1/posts", postRoutes);
 
 // handling all (get,post,update,delete.....) unhandled routes
 app.all("*", (req, res, next) => {
