@@ -1,5 +1,9 @@
 const dotenv = require("dotenv").config({ path: "./config.env" });
 const colors = require("colors");
+const mongoose = require("mongoose");
+
+const DBConnect = require("./utils/dbConnect");
+
 process.on("uncaughtException", (error) => {
   // using uncaughtException event
   console.log(" uncaught Exception => shutting down..... ");
@@ -10,6 +14,7 @@ process.on("uncaughtException", (error) => {
 const app = require("./app");
 
 // database connection
+DBConnect();
 
 // server
 const port = process.env.PORT || 7000;
