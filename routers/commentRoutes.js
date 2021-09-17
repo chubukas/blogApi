@@ -5,7 +5,10 @@ const router = express.Router();
 
 router.post("/:postId", commentController.createComment);
 
-router.route("/:Id").get(commentController.getComment);
+router
+  .route("/:Id")
+  .get(commentController.getComment)
+  .patch(commentController.updateComment);
 
 router.get("/post/:postId", commentController.getAllComment);
 

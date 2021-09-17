@@ -89,3 +89,32 @@ exports.getAllComment = catchAsync(async (req, res, next) => {
   //SEND TO THE CLIENT
   appSuccess(200, "successfully", res, comment);
 });
+
+// UPDATE COMMENT
+exports.updateComment = catchAsync(async (req, res, next) => {
+  const datas = req.body;
+
+  validateInputs(datas, next); // CHECK FROM EMPTY FIELDS AND DELETE THEM
+
+  const comment = await Comment.findOneAndUpdate(
+    { _id: req.params.Id },
+    datas,
+    { new: true, runValidators: true }
+  );
+
+  //   CHECK IF THE POST IS AVAILABLE
+  if (!comment)
+    return next(
+      new AppError(
+        "Either this comment have been deleted OR You are not the owner of this comment!",
+        400
+      )
+    );
+
+  // REMOVE UNWANTED FILEDS BEFORE SENDING
+  comment.post = undefined;
+  comment.createdAt = undefined;
+
+  //SEND TO THE CLIENT
+  appSuccess(200, "comment updated successfully", res, comment);
+});
