@@ -86,3 +86,22 @@ exports.deletePost = catchAsync(async (req, res, next) => {
 
   appSuccess(200, "This post is deleted successfully", res);
 });
+
+// GET SINGLE POST
+exports.getPost = catchAsync(async (req, res, next) => {
+  let post = await Post.findById(req.params.Id).populate({
+    path: "comments",
+    select: { post: 0, createdAt: 0 },
+  });
+
+  //   CHECK IF THE POST IS AVAILABLE
+  if (!post)
+    return next(
+      new AppError("This post is unavailable or have been delete!", 400)
+    );
+
+  const totalComments = post.comments.length;
+  post = { totalComments, post };
+  // SEND THE RESULT TO THE CLIENT
+  appSuccess(200, "Post", res, post);
+});
