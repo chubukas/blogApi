@@ -118,3 +118,38 @@ exports.updateComment = catchAsync(async (req, res, next) => {
   //SEND TO THE CLIENT
   appSuccess(200, "comment updated successfully", res, comment);
 });
+
+// DELETE A SINGLE
+exports.deleteComment = catchAsync(async (req, res, next) => {
+  const { postId, Id } = req.params;
+
+  const comment = await Comment.findOneAndDelete({
+    _id: Id,
+  });
+
+  //   CHECK IF THE POST IS AVAILABLE
+  if (!comment)
+    return next(new AppError("This comment have been deleted!", 400));
+
+  // SELECTE THE POST WITH THE ID AND DELETE WITH THE COMMENT ID AND DECREASE THE TOTAL BY 1
+  const post = await Post.findOneAndUpdate(
+    { _id: postId, totalComments: { $gte: 0 } },
+    {
+      $pull: { comments: Id },
+      $inc: { totalComments: -1 },
+    },
+    { new: true }
+  ).populate({
+    path: "comments",
+    select: { post: 0, createdAt: 0 },
+  });
+
+  //   CHECK IF THE POST IS AVAILABLE
+  if (!post)
+    return next(
+      new AppError("This post is unavailable or have been deleted!", 400)
+    );
+
+  const comments = post.comments;
+  appSuccess(200, "This comment is deleted successfully", res, comments);
+});
