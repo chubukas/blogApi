@@ -105,3 +105,37 @@ exports.getPost = catchAsync(async (req, res, next) => {
   // SEND THE RESULT TO THE CLIENT
   appSuccess(200, "Post", res, post);
 });
+
+// UPDATE POST SINGLE POST
+exports.updatePost = catchAsync(async (req, res, next) => {
+  const datas = req.body;
+  let post;
+  validateInputs(datas, next); // CHECK FROM EMPTY FIELDS AND DELETE THEM
+
+  // CHECK IF FILES ARE IN THE POST
+  if (!req.files) {
+    post = await Post.findOneAndUpdate({ _id: req.params.Id }, datas, {
+      new: true,
+      runValidators: true,
+    }).populate({
+      path: "comments",
+      select: { post: 0, createdAt: 0 },
+    });
+  } else {
+    // Return an error if images is among the update
+    return next(new AppError("You can not update images", 404));
+  }
+
+  //CHECK IF THE POST IS AVAILABLE
+  if (!post)
+    return next(
+      new AppError(
+        "Either this post have been deleted OR You are not the owner of this post!",
+        400
+      )
+    );
+
+  const totalComments = post.comments.length;
+  post = { totalComments, post };
+  appSuccess(200, "Post updated successfully", res, post);
+});
