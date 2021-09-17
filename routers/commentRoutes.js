@@ -7,4 +7,6 @@ router.post("/:postId", commentController.createComment);
 
 router.route("/:Id").get(commentController.getComment);
 
+router.get("/post/:postId", commentController.getAllComment);
+
 module.exports = router;

@@ -66,3 +66,26 @@ exports.getComment = catchAsync(async (req, res, next) => {
   //SEND TO THE CLIENT
   appSuccess(200, "successfully", res, comment);
 });
+
+// GET ALL COMMENTS ON A POST
+exports.getAllComment = catchAsync(async (req, res, next) => {
+  const { postId } = req.params;
+
+  // SELETE COMMENT FROM DATABASE
+  const comment = await Comment.find(
+    { post: postId },
+    {},
+    { select: { post: 0, createdAt: 0, updatedAt: 0 } }
+  );
+
+  //   CHECK IF THE POST IS AVAILABLE
+  if (comment.length < 1)
+    return next(new AppError("There is no comment under this post!", 400));
+
+  // REMOVE UNWANTED FILEDS BEFORE SENDING
+  comment.post = undefined;
+  comment.createdAt = undefined;
+
+  //SEND TO THE CLIENT
+  appSuccess(200, "successfully", res, comment);
+});
