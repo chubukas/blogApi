@@ -6,6 +6,7 @@ const appSuccess = require("../utils/appSuccess");
 const filesUpload = require("../utils/filesUpload");
 const cloudinary = require("../utils/cloudinary");
 const Comment = require("../models/Comments");
+const getPagination = require("../utils/getPagination");
 
 // CREATE POST
 exports.createPost = catchAsync(async (req, res, next) => {
@@ -36,18 +37,27 @@ exports.createPost = catchAsync(async (req, res, next) => {
 
 // GET ALL POSTS WITH COMMENTS
 exports.getAllposts = catchAsync(async (req, res, next) => {
+  const { page, size } = req.query;
+
+  const { limit, offset } = getPagination(page, size);
+
+  const customLabels = {
+    totalDocs: "allPostTotal",
+    limit: "pageSize",
+    page: "currentPage",
+    pagingCounter: "slNo",
+    docs: "posts",
+  };
+
+  const customOptions = {
+    offset,
+    limit,
+    customLabels,
+    populate: "comments",
+  };
+
   // GET ALL THE POST IN THE DATABASE
-  let posts = await Post.find().populate({
-    path: "comments",
-    select: { post: 0, createdAt: 0 },
-  });
-
-  const totalAllComments = posts
-    .map(({ comments }) => comments.length)
-    .reduce((a, b) => a + b, 0);
-  const totalAllPosts = posts.length;
-
-  const data = { totalAllPosts, totalAllComments, posts };
+  let data = await Post.paginate({}, { ...customOptions });
 
   // SEND RESPONSE
   appSuccess(200, "successful", res, data);
