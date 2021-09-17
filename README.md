@@ -10,24 +10,24 @@ The backend can be started with `yarn run dev` after running the `yarn` command 
 
 ## Documentation
 
-**Base URL**
+**Base URL:**  
 /api/v1
 
 **Create Post**
 Returns all posts in a json format.
 
-- **URL**
+- **URL:**  
   /posts
 
-- **Method:**
+- **Method:**  
   `GET`
 
 - **URL Params**
 
-  **Required:**
+  **Required:**  
   None
 
-- **Data Params**
+- **Data Params**  
   None
 
 - **Success Response:**
@@ -38,7 +38,7 @@ Returns all posts in a json format.
 
 ## Hosted Api
 
-[hosted api link: https://blog-api-chubukas.vercel.app](https://blog-api-chubukas.vercel.app/api/v1)
+- hosted api link: [https://blog-api-chubukas.vercel.app](https://blog-api-chubukas.vercel.app/api/v1)
 
 ## Tools Used
 
