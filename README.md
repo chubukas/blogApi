@@ -13,7 +13,7 @@ The backend can be started with `yarn run dev` after running the `yarn` command 
 **Base URL:**  
 /api/v1
 
-**Create Post**
+**Create Post**  
 Returns all posts in a json format.
 
 - **URL:**  
@@ -32,9 +32,27 @@ Returns all posts in a json format.
 
 - **Success Response:**
 
-  - **content:** `{ statusCode : 200, status : "success",message: "successful",data: {"posts":[array of posts with comments], allPostTotal: number, offset: number, pageSize: number, totalPages: number,currentPage: number, slNo: number,hasPrevPage: boolean, hasNextPage: boolean} }`
+  - **content:**
 
-  `It returns empty array of post, if there are no post in the database`
+    > {
+    > statusCode : 200,
+    > status : "success",
+    > message: "successful",
+    > data: {
+    >
+    > > "posts":[array of posts with comments],
+    > > allPostTotal: number,
+    > > offset: number,
+    > > pageSize: number,
+    > > totalPages: number,
+    > > currentPage: number,
+    > > slNo: number,
+    > > hasPrevPage: boolean,
+    > > hasNextPage: boolean
+    > > }
+    > > }
+
+  - `It returns empty array of post, if there are no post in the database`
 
 ## Hosted Api
 
