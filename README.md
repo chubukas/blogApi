@@ -34,23 +34,23 @@ Returns all posts in a json format.
 
   - **content:**
 
-    > {
+    > `{
     > statusCode : 200,
     > status : "success",
     > message: "successful",
     > data: {
     >
-    > > "posts":[array of posts with comments],
-    > > allPostTotal: number,
-    > > offset: number,
-    > > pageSize: number,
-    > > totalPages: number,
-    > > currentPage: number,
-    > > slNo: number,
-    > > hasPrevPage: boolean,
-    > > hasNextPage: boolean
-    > > }
-    > > }
+    > "posts":[array of posts with comments],
+    > allPostTotal: number,
+    > offset: number,
+    > pageSize: number,
+    > totalPages: number,
+    > currentPage: number,
+    > slNo: number,
+    > hasPrevPage: boolean,
+    > hasNextPage: boolean
+    > }
+    > }`
 
   - `It returns empty array of post, if there are no post in the database`
 
