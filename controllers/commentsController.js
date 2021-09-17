@@ -45,3 +45,24 @@ exports.createComment = catchAsync(async (req, res, next) => {
   // SEND THE RESULT TO THE CLIENT
   appSuccess(200, "Comments created successfully", res, comments);
 });
+
+// GET A SINGLE COMMENT
+exports.getComment = catchAsync(async (req, res, next) => {
+  const { Id } = req.params;
+
+  // SELETE COMMENT FROM DATABASE
+  const comment = await Comment.findById(Id);
+
+  //   CHECK IF THE POST IS AVAILABLE
+  if (!comment)
+    return next(
+      new AppError("This comment is unavailable or have been delete!", 400)
+    );
+
+  // REMOVE UNWANTED FILEDS BEFORE SENDING
+  comment.post = undefined;
+  comment.createdAt = undefined;
+
+  //SEND TO THE CLIENT
+  appSuccess(200, "successfully", res, comment);
+});
