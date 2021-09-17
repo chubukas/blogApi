@@ -6,12 +6,23 @@ const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
+const path = require("path");
+const fileUpload = require("express-fileupload");
 
 // Import Routes
 
 const globalErrorHandler = require("./middlewares/globalErrorHandler");
 
 const AppError = require("./middlewares/appError");
+
+// enable files upload
+app.use(
+  fileUpload({
+    createParentPath: true,
+  })
+);
+
+app.use(express.static("uploads"));
 
 app.use(express.json());
 
