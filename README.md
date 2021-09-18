@@ -147,7 +147,7 @@ The backend can be started with `yarn run dev` after running the `yarn` command 
     >
     > > `totalComments : Integer`,  
     > > `posts : `  
-    > > `{`  
+    > > {  
     > > `_id : String`,  
     > > `postMessage : String`,  
     > > `comments : [Array of comments]`,  
@@ -155,7 +155,7 @@ The backend can be started with `yarn run dev` after running the `yarn` command 
     > > `postPictures : [Array of pictures]`,  
     > > `createdAt : String`,  
     > > `updatedAt : String`  
-    > > `}`
+    > > }
     >
     > > }
     >
