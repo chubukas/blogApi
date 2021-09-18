@@ -17,7 +17,7 @@ The backend can be started with `yarn run dev` after running the `yarn` command 
 
 - #### **`GET`**
 
-  - **Description**  
+  - **Description:**  
     Returns all posts in a json format.
 
   - **Parameters:**
@@ -62,8 +62,8 @@ The backend can be started with `yarn run dev` after running the `yarn` command 
 
 - #### **`POST`**
 
-  - **Description**  
-    Create a new post.
+  - **Description:**  
+    Creates a new post.
 
   - **Parameters:**
 
@@ -87,7 +87,7 @@ The backend can be started with `yarn run dev` after running the `yarn` command 
 
     - **Content:**
 
-    > {
+    > {  
     > statusCode : 200,  
     > status : `success`,  
     > message : `successful`,  
