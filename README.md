@@ -20,7 +20,7 @@ The backend can be started with `yarn run dev` after running the `yarn` command 
   - **Description**  
     Returns all posts in a json format.
 
-  - **URL Params:**
+  - **Parameters:**
 
     - **_Required:_**  
       None
@@ -32,12 +32,12 @@ The backend can be started with `yarn run dev` after running the `yarn` command 
         - `page : Integer`,
         - `size : Integer`
 
-  - **Data Params:**  
+  - **Request Body:**  
     None
 
   - **Success Response:**
 
-    - **content:**
+    - **Content:**
 
       > {  
       > statusCode : 200,  
@@ -60,53 +60,53 @@ The backend can be started with `yarn run dev` after running the `yarn` command 
 
     - `It returns empty array of post, if there are no post in the database`
 
-**Create a Post**  
-Create a new post.
+- #### **`POST`**
 
-- **URL:**  
-  /posts
+  - **Description**  
+    Create a new post.
 
-- **Method:**  
-  `POST`
+  - **Parameters:**
 
-- **URL Params:**
+    - **_Required:_**  
+      None
 
-  **Required:**  
-  `postMessage: String`
+    - **_Optional:_**  
+       None
 
-- **Data Params:**  
-  None
+    - **Request Body:**
 
-- **Success Response:**
+      - `postMessage: String`
 
-  - **content:**
+  - **Success Response:**
 
-    > {  
-    > statusCode : 200,  
-    > status : `success`,  
-    > message : `successful`,  
+    - **Content:**
+
+    > {
+    > statusCode : 200,
+    > status : `success`,
+    > message : `successful`,
     > data : {
     >
-    > > `postMessage : String`,  
-    > > `comments : [Array of comments]`,  
-    > > `totalComments : Integer`,  
-    > > `postPictures : [Array of pictures]`,  
-    > > `_id : String`,  
-    > > `createdAt : String`,  
+    > > `postMessage : String`,
+    > > `comments : [Array of comments]`,
+    > > `totalComments : Integer`,
+    > > `postPictures : [Array of pictures]`,
+    > > `_id : String`,
+    > > `createdAt : String`,
     > > `updatedAt : String`
     > > }
     >
     > }
 
-- **Error Response:**
+  - **Error Response:**
 
-  - **content:**
+    - **Content:**
 
-    > {  
-    > statusCode : 500,  
-    > status : `error`,  
-    > message : `String`  
-    > }
+      > {  
+      > statusCode : 500,  
+      > status : `error`,  
+      > message : `String`  
+      > }
 
 ## Hosted Api
 
