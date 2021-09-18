@@ -82,18 +82,18 @@ The backend can be started with `yarn run dev` after running the `yarn` command 
     - **Content:**
 
     > {
-    > statusCode : 200,
-    > status : `success`,
-    > message : `successful`,
+    > statusCode : 200,  
+    > status : `success`,  
+    > message : `successful`,  
     > data : {
     >
-    > > `postMessage : String`,
-    > > `comments : [Array of comments]`,
-    > > `totalComments : Integer`,
-    > > `postPictures : [Array of pictures]`,
-    > > `_id : String`,
-    > > `createdAt : String`,
-    > > `updatedAt : String`
+    > > `postMessage : String`,  
+    > > `comments : [Array of comments]`,  
+    > > `totalComments : Integer`,  
+    > > `postPictures : [Array of pictures]`,  
+    > > `_id : String`,  
+    > > `createdAt : String`,  
+    > > `updatedAt : String`  
     > > }
     >
     > }
