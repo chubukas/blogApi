@@ -11,7 +11,7 @@ The backend can be started with `yarn run dev` after running the `yarn` command 
 ## Documentation
 
 **Base URL:**  
-/api/v1
+**_`/api/v1`_**
 
 ### **/posts**
 
@@ -129,7 +129,7 @@ The backend can be started with `yarn run dev` after running the `yarn` command 
 
         - `Id : String`
 
-    - **_Optional:_**
+    - **_Optional:_**  
       None
 
   - **Request Body:**  
@@ -146,7 +146,8 @@ The backend can be started with `yarn run dev` after running the `yarn` command 
     > data : {
     >
     > > `totalComments : Integer`,  
-    > > `posts : {`  
+    > > `posts : `  
+    > > `{`  
     > > `_id : String`,  
     > > `postMessage : String`,  
     > > `comments : [Array of comments]`,  
@@ -183,7 +184,7 @@ The backend can be started with `yarn run dev` after running the `yarn` command 
 
         - `Id : String`
 
-    - **_Optional:_**
+    - **_Optional:_**  
       None
 
   - **Request Body:**
@@ -236,7 +237,7 @@ The backend can be started with `yarn run dev` after running the `yarn` command 
 
         - `Id : String`
 
-    - **_Optional:_**
+    - **_Optional:_**  
       None
 
   - **Request Body:**
