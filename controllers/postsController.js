@@ -37,27 +37,42 @@ exports.createPost = catchAsync(async (req, res, next) => {
 
 // GET ALL POSTS WITH COMMENTS
 exports.getAllposts = catchAsync(async (req, res, next) => {
+  let data;
+
   const { page, size } = req.query;
+  // check if there is a query string
+  if (page !== undefined || size !== undefined) {
+    const { limit, offset } = getPagination(page, size);
 
-  const { limit, offset } = getPagination(page, size);
+    const customLabels = {
+      totalDocs: "totalPost",
+      limit: "pageSize",
+      page: "currentPage",
+      pagingCounter: "slNo",
+      docs: "posts",
+    };
 
-  const customLabels = {
-    totalDocs: "allPostTotal",
-    limit: "pageSize",
-    page: "currentPage",
-    pagingCounter: "slNo",
-    docs: "posts",
-  };
+    const customOptions = {
+      offset,
+      limit,
+      customLabels,
+      populate: "comments",
+    };
 
-  const customOptions = {
-    offset,
-    limit,
-    customLabels,
-    populate: "comments",
-  };
+    // return posts with pagination
+    data = await Post.paginate({}, { ...customOptions });
+  } else {
+    console.log("noquery string");
+    const posts = await Post.find().populate({
+      path: "comments",
+      select: { post: 0, createdAt: 0 },
+    });
 
-  // GET ALL THE POST IN THE DATABASE
-  let data = await Post.paginate({}, { ...customOptions });
+    const totalPost = posts.length;
+
+    // return posts without
+    data = { totalPost, posts };
+  }
 
   // SEND RESPONSE
   appSuccess(200, "successful", res, data);
