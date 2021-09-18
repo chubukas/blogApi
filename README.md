@@ -13,46 +13,52 @@ The backend can be started with `yarn run dev` after running the `yarn` command 
 **Base URL:**  
 /api/v1
 
-**Get all Posts**  
-Returns all posts in a json format.
+### **/posts**
 
-- **URL:**  
-  /posts
+- #### **`GET`**
 
-- **Method:**  
-  `GET`
+  - **Description**  
+    Returns all posts in a json format.
 
-- **URL Params:**
+  - **URL Params:**
 
-  **Required:**  
-  None
+    - **_Required:_**  
+      None
 
-- **Data Params:**  
-  None
+    - **_Optional:_**
 
-- **Success Response:**
+      - _`QueryStrings : `_
 
-  - **content:**
+        - `page : Integer`,
+        - `size : Integer`
 
-    > {  
-    > statusCode : 200,  
-    > status : `success`,  
-    > message: `successful`,  
-    > data:{
-    >
-    > > `posts : [array of posts with comments]`,  
-    > > `allPostTotal : Integer`,  
-    > > `offset : Integer`,  
-    > > `pageSize : Integer`,  
-    > > `totalPages : Integer`,  
-    > > `currentPage : Integer`,  
-    > > `slNo : Integer`,  
-    > > `hasPrevPage : Boolean`,  
-    > > `hasNextPage : Boolean`  
-    > > }  
-    > > }
+  - **Data Params:**  
+    None
 
-  - `It returns empty array of post, if there are no post in the database`
+  - **Success Response:**
+
+    - **content:**
+
+      > {  
+      > statusCode : 200,  
+      > status : `success`,  
+      > message : `successful`,  
+      > data : {
+      >
+      > > `posts : [array of posts with comments]`,  
+      > > `allPostTotal : Integer`,  
+      > > `offset : Integer`,  
+      > > `pageSize : Integer`,  
+      > > `totalPages : Integer`,  
+      > > `currentPage : Integer`,  
+      > > `slNo : Integer`,  
+      > > `hasPrevPage : Boolean`,  
+      > > `hasNextPage : Boolean`  
+      > > }
+      >
+      > }
+
+    - `It returns empty array of post, if there are no post in the database`
 
 **Create a Post**  
 Create a new post.
@@ -78,8 +84,8 @@ Create a new post.
     > {  
     > statusCode : 200,  
     > status : `success`,  
-    > message: `successful`,  
-    > data:{
+    > message : `successful`,  
+    > data : {
     >
     > > `postMessage : String`,  
     > > `comments : [Array of comments]`,  
