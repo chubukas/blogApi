@@ -13,7 +13,7 @@ The backend can be started with `yarn run dev` after running the `yarn` command 
 **Base URL:**  
 /api/v1
 
-**Create Post**  
+**Get all Posts**  
 Returns all posts in a json format.
 
 - **URL:**  
@@ -22,12 +22,12 @@ Returns all posts in a json format.
 - **Method:**  
   `GET`
 
-- **URL Params**
+- **URL Params:**
 
   **Required:**  
   None
 
-- **Data Params**  
+- **Data Params:**  
   None
 
 - **Success Response:**
@@ -36,23 +36,71 @@ Returns all posts in a json format.
 
     > {  
     > statusCode : 200,  
-    > status : "success",  
-    > message: "successful",  
+    > status : `success`,  
+    > message: `successful`,  
     > data:{
     >
-    > > "posts":[array of posts with comments],  
-    > > allPostTotal: number,  
-    > > offset: number,  
-    > > pageSize: number,  
-    > > totalPages: number,  
-    > > currentPage: number,  
-    > > slNo: number,  
-    > > hasPrevPage: boolean,  
-    > > hasNextPage: boolean  
+    > > `posts : [array of posts with comments]`,  
+    > > `allPostTotal : Integer`,  
+    > > `offset : Integer`,  
+    > > `pageSize : Integer`,  
+    > > `totalPages : Integer`,  
+    > > `currentPage : Integer`,  
+    > > `slNo : Integer`,  
+    > > `hasPrevPage : Boolean`,  
+    > > `hasNextPage : Boolean`  
     > > }  
     > > }
 
   - `It returns empty array of post, if there are no post in the database`
+
+**Create a Post**  
+Create a new post.
+
+- **URL:**  
+  /posts
+
+- **Method:**  
+  `POST`
+
+- **URL Params:**
+
+  **Required:**  
+  `postMessage: String`
+
+- **Data Params:**  
+  None
+
+- **Success Response:**
+
+  - **content:**
+
+    > {  
+    > statusCode : 200,  
+    > status : `success`,  
+    > message: `successful`,  
+    > data:{
+    >
+    > > `postMessage : String`,  
+    > > `comments : [Array of comments]`,  
+    > > `totalComments : Integer`,  
+    > > `postPictures : [Array of pictures]`,  
+    > > `_id : String`,  
+    > > `createdAt : String`,  
+    > > `updatedAt : String`
+    > > }
+    >
+    > }
+
+- **Error Response:**
+
+  - **content:**
+
+    > {  
+    > statusCode : 500,  
+    > status : `error`,  
+    > message : `String`  
+    > }
 
 ## Hosted Api
 
@@ -65,12 +113,12 @@ Returns all posts in a json format.
 - MongoDB
 - cloudinary (for storing of post images)
 
-* **Notes:**
+## Note:
 
-  > If you are going to run this app on your local host You have to create a `config.env` file and save these variables:
-  >
-  > - DATABASE (Link to your online monogoDb cluster )
-  > - DATABASE_PASSWORD (The password to monogoDb cluster)
-  > - CLOUDINARY_NAME (Your cloudinary username)
-  > - CLOUDINARY_API_KEY (Your cloudinary API key)
-  > - CLOUDINARY_SECRET (Your cloudinary secret)
+> If you are going to run this app on your local host You have to create a `config.env` file and save these variables:
+>
+> - DATABASE (Link to your online monogoDb cluster )
+> - DATABASE_PASSWORD (The password to monogoDb cluster)
+> - CLOUDINARY_NAME (Your cloudinary username)
+> - CLOUDINARY_API_KEY (Your cloudinary API key)
+> - CLOUDINARY_SECRET (Your cloudinary secret)
