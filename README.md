@@ -114,6 +114,156 @@ The backend can be started with `yarn run dev` after running the `yarn` command 
       > message : `String`  
       > }
 
+### **/posts/:Id**
+
+- #### **`GET`**
+
+  - **Description:**  
+    Returns a post that matches the `id` in a json format.
+
+  - **Parameters:**
+
+    - **_Required:_**
+
+      - _`Path : `_
+
+        - `Id : String`
+
+    - **_Optional:_**
+      None
+
+  - **Request Body:**  
+     None
+
+  - **Success Response:**
+
+    - **Content:**
+
+    > {  
+    > statusCode : 200,  
+    > status : `success`,  
+    > message : `Post`,  
+    > data : {
+    >
+    > > `totalComments : Integer`,  
+    > > `posts : {`  
+    > > `_id : String`,  
+    > > `postMessage : String`,  
+    > > `comments : [Array of comments]`,  
+    > > `totalComments : Integer`,  
+    > > `postPictures : [Array of pictures]`,  
+    > > `createdAt : String`,  
+    > > `updatedAt : String`  
+    > > `}`
+    >
+    > > }
+    >
+    > }
+
+  - **Error Response:**
+
+    - **Content:**
+
+      > {  
+      > statusCode : 400,  
+      > status : `error`,  
+      > message : `String`  
+      > }
+
+- #### **`PATCH`**
+
+  - **Description:**  
+    Updates a post that matches the `id`.
+
+  - **Parameters:**
+
+    - **_Required:_**
+
+      - _`Path : `_
+
+        - `Id : String`
+
+    - **_Optional:_**
+      None
+
+  - **Request Body:**
+
+    - **_Required:_**
+
+      - `postMessage : String`
+
+  - **Success Response:**
+
+    - **Content:**
+
+    > {  
+    > statusCode : 200,  
+    > status : `success`,  
+    > message : `successful`,  
+    > data : {
+    >
+    > > `postMessage : String`,  
+    > > `comments : [Array of comments]`,  
+    > > `totalComments : Integer`,  
+    > > `postPictures : [Array of pictures]`,  
+    > > `_id : String`,  
+    > > `createdAt : String`,  
+    > > `updatedAt : String`  
+    > > }
+    >
+    > }
+
+  - **Error Response:**
+
+    - **Content:**
+
+      > {  
+      > statusCode : 400,  
+      > status : `error`,  
+      > message : `String`  
+      > }
+
+- #### **`DELETE`**
+
+  - **Description:**  
+    Deletes a post that matches the `id`.
+
+  - **Parameters:**
+
+    - **_Required:_**
+
+      - _`Path : `_
+
+        - `Id : String`
+
+    - **_Optional:_**
+      None
+
+  - **Request Body:**
+
+    - **_Required:_**
+      None
+
+  - **Success Response:**
+
+    - **Content:**
+
+      > {  
+      > statusCode : 200,  
+      > status : `success`,  
+      > message : `String`  
+      > }
+
+  - **Error Response:**
+
+    - **Content:**
+
+      > {  
+      > statusCode : 400,  
+      > status : `error`,  
+      > message : `String`  
+      > }
+
 ## Hosted Api
 
 - hosted api link: [https://blog-api-chubukas.vercel.app](https://blog-api-chubukas.vercel.app/api/v1)
