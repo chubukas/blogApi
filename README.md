@@ -29,7 +29,7 @@ The backend can be started with `yarn run dev` after running the `yarn` command 
 
       - _`QueryStrings : `_
 
-        - `page : Integer`,
+        - `page : Integer`
         - `size : Integer`
 
   - **Request Body:**  
@@ -245,6 +245,9 @@ The backend can be started with `yarn run dev` after running the `yarn` command 
     - **_Required:_**
       None
 
+    - **_Optional:_**  
+      None
+
   - **Success Response:**
 
     - **Content:**
@@ -254,6 +257,261 @@ The backend can be started with `yarn run dev` after running the `yarn` command 
       > status : `success`,  
       > message : `String`  
       > }
+
+  - **Error Response:**
+
+    - **Content:**
+
+      > {  
+      > statusCode : 400,  
+      > status : `error`,  
+      > message : `String`  
+      > }
+
+### **/comments/:postId**
+
+- #### **`POST`**
+
+  - **Description:**  
+    Creates a new comment under a post that marches the `postId`.
+
+  - **Parameters:**
+
+    - **_Required:_**
+
+      - _`Path : `_
+
+        - `postId : String`
+
+    - **_Optional:_**  
+      None
+
+  - **Request Body:**
+
+    - **_Required:_**
+
+      - `commentMessage : String`
+
+  - **Success Response:**
+
+    - **Content:**
+
+    > {  
+    > statusCode : 200,  
+    > status : `success`,  
+    > message : `successful`,  
+    > data : {
+    >
+    > > `commentMessage : String`,  
+    > > `_id : String`,  
+    > > `createdAt : String`,  
+    > > `updatedAt : String`  
+    > > }
+    >
+    > }
+
+  - **Error Response:**
+
+    - **Content:**
+
+      > {  
+      > statusCode : 500,  
+      > status : `error`,  
+      > message : `String`  
+      > }
+
+### **/comments/:Id**
+
+- #### **`GET`**
+
+  - **Description:**  
+    Returns a comment that matches the `id` in a json format.
+
+  - **Parameters:**
+
+    - **_Required:_**
+
+      - _`Path : `_
+
+        - `Id : String`
+
+    - **_Optional:_**  
+      None
+
+  - **Request Body:**  
+     None
+
+  - **Success Response:**
+
+    - **Content:**
+
+    > {  
+    > statusCode : 200,  
+    > status : `success`,  
+    > message : `successfully`,  
+    > data : {
+    >
+    > > `_id : String`,  
+    > > `commentMessage : String`,  
+    > > `createdAt : String`,  
+    > > `updatedAt : String`  
+    > > }
+    >
+    > }
+
+  - **Error Response:**
+
+    - **Content:**
+
+      > {  
+      > statusCode : 400,  
+      > status : `error`,  
+      > message : `String`  
+      > }
+
+- #### **`PATCH`**
+
+  - **Description:**  
+    Updates a comment that matches the `id`.
+
+  - **Parameters:**
+
+    - **_Required:_**
+
+      - _`Path : `_
+
+        - `Id : String`
+
+    - **_Optional:_**  
+      None
+
+  - **Request Body:**
+
+    - **_Required:_**
+
+      - `commentMessage : String`
+
+  - **Success Response:**
+
+    - **Content:**
+
+    > {  
+    > statusCode : 200,  
+    > status : `success`,  
+    > message : `successfully`,  
+    > data : {
+    >
+    > > `_id : String`,  
+    > > `commentMessage : String`,  
+    > > `createdAt : String`,  
+    > > `updatedAt : String`  
+    > > }
+    >
+    > }
+
+  - **Error Response:**
+
+    - **Content:**
+
+      > {  
+      > statusCode : 500,  
+      > status : `error`,  
+      > message : `String`  
+      > }
+
+### **/comments/post/:postId**
+
+- #### **`GET`**
+
+  - **Description:**  
+    Returns all comments in a particular post that matches the `postId` in a json format.
+
+  - **Parameters:**
+
+    - **_Required:_**
+
+      - _`Path : `_
+
+        - `postId : String`
+
+    - **_Optional:_**  
+      None
+
+  - **Request Body:**  
+     None
+
+  - **Success Response:**
+
+    - **Content:**
+
+    > {  
+    > statusCode : 200,  
+    > status : `success`,  
+    > message : `successfully`,  
+    > data : [
+    >
+    > > > {`_id : String`, `commentMessage : String`}
+    > >
+    > > ]
+    >
+    > }
+
+  - **Error Response:**
+
+    - **Content:**
+
+      > {  
+      > statusCode : 400,  
+      > status : `error`,  
+      > message : `String`  
+      > }
+
+### **/comments/:id/:postId**
+
+- #### **`DELETE`**
+
+  - **Description:**  
+    Deletes a comment that matches the `id` under a post that matches the `postId`.
+
+  - **Parameters:**
+
+    - **_Required:_**
+
+      - _`Path : `_
+
+        - `Id : String`
+        - `postId : String`
+
+    - **_Optional:_**  
+      None
+
+  - **Request Body:**
+
+    - **_Required:_**
+      None
+
+    - **_Optional:_**  
+      None
+
+  - **Success Response:**
+
+    - **Content:**
+
+    > {  
+    > statusCode : 200,  
+    > status : `success`,  
+    > message : `This comment is deleted successfully`,  
+    > data : [
+    >
+    > > > {  
+    > > >  `_id : String`,  
+    > > > `commentMessage : String`,  
+    > > > `updatedAt : String`  
+    > > >  }
+    > >
+    > > ]
+    >
+    > }
 
   - **Error Response:**
 
