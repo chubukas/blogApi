@@ -267,7 +267,8 @@ The backend can be started with `yarn run dev` after running the `yarn` command 
 
 ## Hosted Api
 
-- hosted api link: [https://blog-api-chubukas.vercel.app](https://blog-api-chubukas.vercel.app/api/v1)
+- **_`hosted api link`_**:  
+  [https://blog-api-chubukas.vercel.app](https://blog-api-chubukas.vercel.app/api/v1)
 
 ## Tools Used
 
