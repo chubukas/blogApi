@@ -6,7 +6,7 @@ This is a blog Api that can **create, read, update and delete** a post and comme
 
 ## Start-Up
 
-The backend can be started with `yarn run dev` after running the `yarn` command to install the dependences, also make sure you have your mongoDB server runing in the background for the database connection, and if you don't have `nodemon` in your global machine, then you need to install it as a global or as a dependence.
+The backend can be started with `yarn run dev` after running the `yarn` command to install the dependences, also make sure you have your `mongoDB server` runing in the background for the database connection, and if you don't have `nodemon` in your global machine, then you need to install it as a global or as a dependence.
 
 ## Documentation
 
@@ -131,6 +131,7 @@ The backend can be started with `yarn run dev` after running the `yarn` command 
 >
 > - DATABASE (Link to your online monogoDb cluster )
 > - DATABASE_PASSWORD (The password to monogoDb cluster)
+> - DATABASE_LOCAL (Your local mongoDB Link)
 > - CLOUDINARY_NAME (Your cloudinary username)
 > - CLOUDINARY_API_KEY (Your cloudinary API key)
 > - CLOUDINARY_SECRET (Your cloudinary secret)
