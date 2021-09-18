@@ -75,7 +75,13 @@ The backend can be started with `yarn run dev` after running the `yarn` command 
 
   - **Request Body:**
 
-    - `postMessage: String`
+    - **_Required:_**
+
+      - `postMessage : String`
+
+    - **_Optional:_**
+
+      - `postPictures : Array[]`
 
   - **Success Response:**
 
